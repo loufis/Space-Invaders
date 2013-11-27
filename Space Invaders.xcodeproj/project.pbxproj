@@ -25,12 +25,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8404D5211846677F00FC0791 /* File.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
+		8404D5211846677F00FC0791 /* Options.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Options.txt; sourceTree = "<group>"; };
+		8404D5371846936500FC0791 /* menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
 		844F0EEB1844EA1900B1FB1A /* Space Invaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Space Invaders"; sourceTree = BUILT_PRODUCTS_DIR; };
 		844F0EEE1844EA1900B1FB1A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		844F0EF01844EA1900B1FB1A /* Space_Invaders.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Space_Invaders.1; sourceTree = "<group>"; };
 		844F0EF718451A6500B1FB1A /* Bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		844F0EF818454EBB00B1FB1A /* Bullet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		84EE3DAF184699ED00277FC8 /* mainmenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainmenu.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +69,9 @@
 				844F0EF01844EA1900B1FB1A /* Space_Invaders.1 */,
 				844F0EF718451A6500B1FB1A /* Bullet.h */,
 				844F0EF818454EBB00B1FB1A /* Bullet.cpp */,
-				8404D5211846677F00FC0791 /* File.txt */,
+				8404D5211846677F00FC0791 /* Options.txt */,
+				8404D5371846936500FC0791 /* menu.h */,
+				84EE3DAF184699ED00277FC8 /* mainmenu.h */,
 			);
 			path = "Space Invaders";
 			sourceTree = "<group>";
