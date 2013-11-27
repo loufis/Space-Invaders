@@ -3,8 +3,12 @@
 #include <thread>
 #include <string>
 #include <ctime>
+#include <fstream>
 #include "Bullet.h"
 using namespace std;
+
+char up[2], down[2], left[2], right[2], fire[2];
+
 
 void game(char a[][238])
 {
@@ -16,7 +20,6 @@ void game(char a[][238])
     
     while(1)
     {
-        
         key = '0';
         
         refresh();
@@ -36,6 +39,49 @@ void game(char a[][238])
         }
     }
 }
+
+void mainmenu (char a[][238])
+{
+    char key = ERR;
+    int crsr = 0;
+    string menu[6];
+    menu[0] = "Arcade Mode";
+    menu[1] = "Custom Mode";
+    menu[2] = "Coopoerative Mode";
+    menu[3] = "VS Mode";
+    menu[4] = "Options";
+    menu[5] = "Highscore Board";
+    
+    for (int i=0; i<6; i++)
+        for (int j=0; j<menu[i].size(); j++)
+            a[38 + 4*i][100+j] = menu[i].at(j);
+    
+    while (key != '\n')
+    {
+        key = ERR;
+        a[38 + 4*crsr][99] = '>';
+        
+        for (int i=0; i<74; i++)
+            for (int j=0; j<238; j++)
+                mvaddch(i, j, a[i][j]);
+        refresh();
+        
+        timeout(100);
+        key = getch();
+        
+        a[38 + 4*crsr][99] = ' ';
+        
+        
+        if ((key == up[0] || key == up[1]) && crsr != 0)
+            crsr--;
+        else
+            if ((key == down[0] || key == down[1]) && crsr != 5)
+                crsr++;
+    }
+    
+     game(a);
+}
+
 
 void startscreen(char a[][238])
 {
@@ -64,6 +110,8 @@ void startscreen(char a[][238])
             seen[i][j] = false;
     }
     
+    //Initialize the Space Invaders Logo
+    ///////////////////////////////////////////////////////////////////////////////////
     while (flag)
     {
         
@@ -77,10 +125,7 @@ void startscreen(char a[][238])
             col = rand()%screen[row].size();
         } while (seen[row][col]);
         
-        
-        /*for (int i=0; i<12; i++)
-         for (int j=0; j<screen[i].size(); j++)
-         a[i+20][j+70] = screen[i].at(j);*/
+
         a[15+row][75+col] = screen[row].at(col);
         seen[row][col] = true;
         
@@ -102,7 +147,10 @@ void startscreen(char a[][238])
         
         refresh();
     }
+    ///////////////////////////////////////////////////////////////////////////////////
     
+    //This loop blinks the "Press Any Key" sentence
+    ///////////////////////////////////////////////////////////////////////////////////
     while (key == ERR)
     {
         
@@ -130,10 +178,10 @@ void startscreen(char a[][238])
         //timeout(500);
         key = getch();
     }
-     
-    game(a);
+    ///////////////////////////////////////////////////////////////////////////////////
     
-        
+    mainmenu(a);
+    
 }
 
 
@@ -141,9 +189,13 @@ void startscreen(char a[][238])
 int main()
 {
     char a[74][238];
-
+    ifstream input;
+    ofstream output;
+    
+    
     initscr();
  
+    //
     for (int i=0; i<74; i++)
         for (int j=0; j<238; j++)
             a[i][j] = ' ';
