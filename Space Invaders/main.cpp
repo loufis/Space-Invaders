@@ -129,12 +129,7 @@ void startscreen(char a[][238])
         //timeout(500);
         key = getch();
     }
-    
-    while (1)
-    {
-        
-    }
-    
+     
     game(a);
     
         
