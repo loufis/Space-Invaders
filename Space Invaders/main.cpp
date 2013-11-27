@@ -114,7 +114,7 @@ void startscreen(char a[][238])
         
         refresh();
         
-        timeout(1000);
+        timeout(500);
         key = getch();
         
         for (int i=0; i<screen[12].size(); i++)
