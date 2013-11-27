@@ -28,6 +28,8 @@
 		844F0EEB1844EA1900B1FB1A /* Space Invaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Space Invaders"; sourceTree = BUILT_PRODUCTS_DIR; };
 		844F0EEE1844EA1900B1FB1A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		844F0EF01844EA1900B1FB1A /* Space_Invaders.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Space_Invaders.1; sourceTree = "<group>"; };
+		844F0EF718451A6500B1FB1A /* Bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		844F0EF818454EBB00B1FB1A /* Bullet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,8 @@
 			children = (
 				844F0EEE1844EA1900B1FB1A /* main.cpp */,
 				844F0EF01844EA1900B1FB1A /* Space_Invaders.1 */,
+				844F0EF718451A6500B1FB1A /* Bullet.h */,
+				844F0EF818454EBB00B1FB1A /* Bullet.cpp */,
 			);
 			path = "Space Invaders";
 			sourceTree = "<group>";
@@ -186,6 +190,7 @@
 		844F0EF51844EA1900B1FB1A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"OTHER_LDFLAGS[arch=*]" = "-lncurses";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -193,6 +198,7 @@
 		844F0EF61844EA1900B1FB1A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"OTHER_LDFLAGS[arch=*]" = "-lncurses";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
