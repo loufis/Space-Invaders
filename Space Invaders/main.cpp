@@ -16,6 +16,7 @@ void game(char a[][238])
     
     while(1)
     {
+        
         key = '0';
         
         refresh();
