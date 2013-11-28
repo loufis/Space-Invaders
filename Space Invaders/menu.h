@@ -71,7 +71,6 @@ int menu::displaymenu(char a[][238])
     for (int i=0; i<menusize; i++)
         for (int j=0; j<choice[i].size(); j++)
             a[30 + 3*i][100+j] = choice[i].at(j);
-    
     ///////////////////////////////////////////////////////////////////////////////////
 
     
@@ -104,12 +103,12 @@ int menu::displaymenu(char a[][238])
     }
     ///////////////////////////////////////////////////////////////////////////////////
     
-    menu::clearmenu(a);
     return crsr;
 }
 
 void menu::displaytitle(char a[][238])
 {
+    menu::clearmenu(a);
     bool revealed[12], seen[12][238], flag = true;
     int row, col;
     
@@ -128,7 +127,6 @@ void menu::displaytitle(char a[][238])
     ///////////////////////////////////////////////////////////////////////////////////
     while (flag)
     {
-        
         do
         {
             row = rand()%titlesize;

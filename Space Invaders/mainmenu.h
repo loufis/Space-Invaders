@@ -54,7 +54,7 @@ void mainmenu::blink(char a[][238])
         
         refresh();
         
-        timeout(800);
+        timeout(900);
         key = getch();
         if (key != ERR) break;
         
