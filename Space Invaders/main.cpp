@@ -6,26 +6,38 @@
 #include "Bullet.h"
 #include "mainmenu.h"
 #include "options.h"
+void openmainmenu();
+void openoptmenu();
+void game();
 
 using namespace std;
 
 char up[2], down[2], lft[2], rt[2], fire[2];
 char a[74][238];
-enum mainchoices {Arcade, Custom, Cooperative, VS, Options, Highscore};
+enum mainchoices {Arcade, Custom, Cooperative, VS, Options, Highscore, back=-1};
 
 void openoptmenu ()
 {
     options opt;
     opt.displaytitle(a);
     opt.optmenu(a);
+    openmainmenu();
 }
 
 void openmainmenu ()
 {
+    int x;
     mainmenu man;
     man.displaytitle(a);
-    man.blink(a);
-    switch (mainchoices(man.displaymenu(a)))
+    do
+    {
+        man.clearmenu(a);
+        man.blink(a);
+        x = man.displaymenu(a);
+    }
+    while(mainchoices(x) == back);
+
+    switch (mainchoices(x))
     {
         case Arcade: {break;}
         case Custom: {break;}

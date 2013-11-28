@@ -2,7 +2,7 @@ up1:w
 down1:s
 left1:a
 right1:f
-fire1: 
+fire1:b
 up2:i
 down2:k
 left2:j

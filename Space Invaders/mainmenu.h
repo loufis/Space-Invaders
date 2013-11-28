@@ -39,6 +39,9 @@ mainmenu::mainmenu()
 
 void mainmenu::blink(char a[][238])
 {
+    for(int i=0; i<22; i++)
+        a[0][i] = ' ';
+    
     string blinker = "Press Any Key";
     while (1)
     {
@@ -51,7 +54,7 @@ void mainmenu::blink(char a[][238])
         
         refresh();
         
-        timeout(900);
+        timeout(800);
         key = getch();
         if (key != ERR) break;
         

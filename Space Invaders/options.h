@@ -58,14 +58,22 @@ options::options()
 void options::optmenu(char a[][238])
 {
     int x;
+    char key;
     int c=0;
     string optfile = "up1: down1: left1: right1: fire1: up2: down2: left2: right2: fire2: ";
-    x = displaymenu(a);
     
-    output.open("/Users/Admin/Documents/Space Invaders/Space Invaders/Options.txt");
+    while (1)
+    {
+    x = displaymenu(a);
+    if (x == -1) return;
+    
     
     timeout(10000000);
-    controls[x] = getch();
+    key = getch();
+    if (key == '`') continue;
+    controls[x] = key;
+    output.open("/Users/Admin/Documents/Space Invaders/Space Invaders/Options.txt");
+
     
     for (int i=0; i<10; i++)
     {
@@ -75,6 +83,7 @@ void options::optmenu(char a[][238])
         output << controls[i] << "\n";
     }
     output.close();
+        
     up[0] = controls[0];
     down[0] = controls[1];
     lft[0] = controls[2];
@@ -92,6 +101,6 @@ void options::optmenu(char a[][238])
         choice[i] += controls[i];
         choice[i] += "\"";
     }
-    x = displaymenu(a);
+    }
 }
 #endif

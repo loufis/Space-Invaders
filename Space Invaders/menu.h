@@ -15,6 +15,7 @@ public:
     menu();
     void displaytitle(char[][238]);
     int displaymenu(char[][238]);
+    void clearmenu(char[][238]);
     int menusize = 0, titlesize = 0;
     ifstream input;
     ofstream output;
@@ -51,16 +52,36 @@ menu::menu()
     
 }
 
+void menu::clearmenu(char a[][238])
+{
+    for (int i=0; i<menusize; i++)
+        for (int j=0; j<choice[i].size(); j++)
+            a[30 + 3*i][100+j] = ' ';
+}
+
 
 int menu::displaymenu(char a[][238])
 {
+    string goback = "Press \" ` \" to go back";
+    
+    for (int i=0; i<goback.size(); i++)
+        a[0][i] = goback.at(i);
+    //display menu choices
+    ///////////////////////////////////////////////////////////////////////////////////
     for (int i=0; i<menusize; i++)
         for (int j=0; j<choice[i].size(); j++)
             a[30 + 3*i][100+j] = choice[i].at(j);
     
-    key = ERR;
-    while (key != '\n')
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    
+    key = ERR;  //avoid exiting on re-entry
+    
+    //move cursor and choose form menu
+    ///////////////////////////////////////////////////////////////////////////////////
+    while (key != '\n' && key != fire[0] && key != fire[1])
     {
+        if (key == '`') return -1;
         key = ERR;
         a[30 + 3*crsr][99] = '>';
         
@@ -81,12 +102,9 @@ int menu::displaymenu(char a[][238])
             if ((key == down[0] || key == down [1]) && crsr != menusize-1)
                 crsr++;
     }
-    for (int i=0; i<menusize; i++)
-        for (int j=0; j<choice[i].size(); j++)
-            a[30 + 3*i][100+j] = ' ';
-    /*for (int i=0; i<74; i++)
-        for (int j=0; j<238; j++)
-            a[i][j] = ' ';*/
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    menu::clearmenu(a);
     return crsr;
 }
 
@@ -94,6 +112,10 @@ void menu::displaytitle(char a[][238])
 {
     bool revealed[12], seen[12][238], flag = true;
     int row, col;
+    
+    for (int i=0; i<74; i++)
+        for (int j=0; j<238; j++)
+            a[i][j] = ' ';
     
     for (int i=0; i<titlesize; i++)
     {
