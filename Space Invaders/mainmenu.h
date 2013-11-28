@@ -1,18 +1,21 @@
-#include <ncurses.h>
-#include <string>
-#include "menu.h"
 #ifndef Space_Invaders_mainmenu_h
 #define Space_Invaders_mainmenu_h
+#include "menu.h"
+
+
 class mainmenu: public menu
 {
 public:
     mainmenu();
     void blink (char[][238]);
 };
-#endif
 
 mainmenu::mainmenu()
 {
+    menu::menu();
+    menusize = 6;
+    titlesize = 12;
+    
     screen[0] = "    _________                                                                   ";
     screen[1] ="    /   _____/______ _____     ____   ____                                      ";
     screen[2] ="    \\_____  \\ \\____ \\\\__  \\  _/ ___\\_/ __ \\                                     ";
@@ -28,7 +31,7 @@ mainmenu::mainmenu()
     
     choice[0] = "Arcade Mode";
     choice[1] = "Custom Mode";
-    choice[2] = "Coopoerative Mode";
+    choice[2] = "Cooperative Mode";
     choice[3] = "VS Mode";
     choice[4] = "Options";
     choice[5] = "Highscore Board";
@@ -48,7 +51,7 @@ void mainmenu::blink(char a[][238])
         
         refresh();
         
-        timeout(500);
+        timeout(900);
         key = getch();
         if (key != ERR) break;
         
@@ -64,7 +67,9 @@ void mainmenu::blink(char a[][238])
         key = getch();
         if (key != ERR) break;
     }
+    key = ERR;
     for (int i=0; i<blinker.size(); i++)
         a[30+13][105+i] = ' ';
 }
 
+#endif

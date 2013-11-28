@@ -5,11 +5,40 @@
 #include <fstream>
 #include "Bullet.h"
 #include "mainmenu.h"
+#include "options.h"
+
 using namespace std;
 
 char up[2], down[2], lft[2], rt[2], fire[2];
+char a[74][238];
+enum mainchoices {Arcade, Custom, Cooperative, VS, Options, Highscore};
 
-void game(char a[][238])
+void openoptmenu ()
+{
+    options opt;
+    opt.displaytitle(a);
+    opt.optmenu(a);
+}
+
+void openmainmenu ()
+{
+    mainmenu man;
+    man.displaytitle(a);
+    man.blink(a);
+    switch (mainchoices(man.displaymenu(a)))
+    {
+        case Arcade: {break;}
+        case Custom: {break;}
+        case Cooperative: {break;}
+        case VS: {break;}
+        case Options: {openoptmenu(); break;}
+        case Highscore: {break;}
+    }
+}
+
+
+
+void game()
 {
     char key;
     thread* t;
@@ -40,7 +69,7 @@ void game(char a[][238])
 
 int main()
 {
-    char a[74][238];
+
     
     initscr();
  
@@ -48,13 +77,9 @@ int main()
         for (int j=0; j<238; j++)
             a[i][j] = ' ';
     
-    //startscreen(a);
+    openmainmenu();
     
-    mainmenu abc;
-    abc.displaytitle(a);
-    abc.blink(a);
-    abc.displaymenu(a);
-    game(a);
+    game();
     
     endwin();
     

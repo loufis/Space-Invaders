@@ -1,8 +1,8 @@
+#ifndef Space_Invaders_menu_h
+#define Space_Invaders_menu_h
 #include <string>
 #include <ncurses.h>
 #include <fstream>
-#ifndef Space_Invaders_menu_h
-#define Space_Invaders_menu_h
 class menu
 {
 protected:
@@ -11,17 +11,17 @@ protected:
 public:
     string screen[12], choice[20];
     char up[2], down[2], lft[2], rt[2], fire[2];
+    char controls[10];
     menu();
     void displaytitle(char[][238]);
-    void displaymenu(char[][238]);
+    int displaymenu(char[][238]);
+    int menusize = 0, titlesize = 0;
+    ifstream input;
+    ofstream output;
 };
-#endif
 
 menu::menu()
 {
-    ifstream input;
-    ofstream output;
-    
     input.open("/Users/Admin/Documents/Space Invaders/Space Invaders/Options.txt");
     
     for (int j=0; j<2; j++)
@@ -38,6 +38,56 @@ menu::menu()
             }
         }
     input.close();
+    controls[0] = up[0];
+    controls[1] = down[0];
+    controls[2] = lft[0];
+    controls[3] = rt[0];
+    controls[4] = fire[0];
+    controls[5] = up[1];
+    controls[6] = down[1];
+    controls[7] = lft[1];
+    controls[8] = rt[1];
+    controls[9] = fire[1];
+    
+}
+
+
+int menu::displaymenu(char a[][238])
+{
+    for (int i=0; i<menusize; i++)
+        for (int j=0; j<choice[i].size(); j++)
+            a[30 + 3*i][100+j] = choice[i].at(j);
+    
+    key = ERR;
+    while (key != '\n')
+    {
+        key = ERR;
+        a[30 + 3*crsr][99] = '>';
+        
+        for (int i=0; i<74; i++)
+            for (int j=0; j<238; j++)
+                mvaddch(i, j, a[i][j]);
+        refresh();
+        
+        timeout(100);
+        key = getch();
+        
+        a[30 + 3*crsr][99] = ' ';
+        
+        
+        if ((key == up[0] || key == up[1]) && crsr != 0)
+            crsr--;
+        else
+            if ((key == down[0] || key == down [1]) && crsr != menusize-1)
+                crsr++;
+    }
+    for (int i=0; i<menusize; i++)
+        for (int j=0; j<choice[i].size(); j++)
+            a[30 + 3*i][100+j] = ' ';
+    /*for (int i=0; i<74; i++)
+        for (int j=0; j<238; j++)
+            a[i][j] = ' ';*/
+    return crsr;
 }
 
 void menu::displaytitle(char a[][238])
@@ -45,7 +95,7 @@ void menu::displaytitle(char a[][238])
     bool revealed[12], seen[12][238], flag = true;
     int row, col;
     
-    for (int i=0; i<12; i++)
+    for (int i=0; i<titlesize; i++)
     {
         revealed[i] = false;
         for(int j=0; j<238; j++)
@@ -59,7 +109,7 @@ void menu::displaytitle(char a[][238])
         
         do
         {
-            row = rand()%12;
+            row = rand()%titlesize;
         } while (revealed[row]);
         
         do
@@ -79,7 +129,7 @@ void menu::displaytitle(char a[][238])
         
         
         flag = false;
-        for (int i=0; i<12; i++)
+        for (int i=0; i<titlesize; i++)
             if (!revealed[i])
                 flag = true;
         
@@ -92,33 +142,5 @@ void menu::displaytitle(char a[][238])
     /////////////////////////////////////////////////////////////////////////////////////
 }
 
-void menu::displaymenu(char a[][238])
-{
-    for (int i=0; i<12; i++)
-        for (int j=0; j<choice[i].size(); j++)
-            a[38 + 4*i][100+j] = choice[i].at(j);
-    
-    while (key != '\n')
-    {
-        key = ERR;
-        a[38 + 4*crsr][99] = '>';
-        
-        for (int i=0; i<74; i++)
-            for (int j=0; j<238; j++)
-                mvaddch(i, j, a[i][j]);
-        refresh();
-        
-        timeout(100);
-        key = getch();
-        
-        a[38 + 4*crsr][99] = ' ';
-        
-        
-        if ((key == up[0] || key == up[1]) && crsr != 0)
-            crsr--;
-        else
-            if ((key == down[0] || key == down [1]) && crsr != 5)
-                crsr++;
-    }
+#endif
 
-}

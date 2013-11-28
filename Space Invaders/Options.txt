@@ -1,10 +1,10 @@
 up1:w
 down1:s
 left1:a
-right1:d
+right1:f
 fire1: 
 up2:i
 down2:k
 left2:j
 right2:l
-fire2:f
+fire2:o
